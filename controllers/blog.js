@@ -39,7 +39,7 @@ exports.createBlog = async (req, res) => {
 // Get a post
 exports.getBlogs = async (req, res) => {
     try {
-        const post = await BlogSchema.find();
+        const post = await BlogSchema.find().populate("user");
         res.status(200).json(post);
     } catch (err) {
         res.status(404).json({ msg: "no posts found" });

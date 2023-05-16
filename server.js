@@ -2,6 +2,7 @@ const express = require("express");
 const connectDB = require("./config/connectDB");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const multer = require("multer");
 const UserRouter = require("./routes/user");
 const BlogRouter = require("./routes/blog");
 
@@ -13,6 +14,22 @@ app.use(express.json());
 dotenv.config();
 require("dotenv").config();
 connectDB();
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "../Client/public/upload");
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + file.originalname);
+    },
+});
+const upload = multer({ storage: storage });
+//const upload = multer({ dest: './uploads/' })
+app.post('/api/upload', upload.single('file'),
+    function (req, res) {
+        const file = req.file;
+        res.status(200).json(file.filename);
+})
 
 app.use("/users", UserRouter);
 app.use("/blogs", BlogRouter);
