@@ -31,8 +31,8 @@ app.post('/api/upload', upload.single('file'),
         res.status(200).json(file.filename);
 })
 
-app.use("/users", UserRouter);
-app.use("/blogs", BlogRouter);
+app.use("/api/users", UserRouter);
+app.use("/api/blogs", BlogRouter);
 
 app.listen(port, (err) => {
     err ? console.log(err) : console.log(`welcome to ${port}`);

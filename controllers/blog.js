@@ -8,7 +8,7 @@ exports.createBlog = async (req, res) => {
         const { title, userId, description, cover, picturePath } = req.body;
         const user = await UserSchema.findById(userId);
         if (!user) {
-            return res.status(400).json({msg:"this id is unfound"})
+            return res.status(400).json({msg:"this id is unfounded"})
         };
 
         const newPost = new BlogSchema({

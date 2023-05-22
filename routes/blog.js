@@ -3,7 +3,7 @@ const { createBlog, getBlogs, updateBlog, deleteBlog, getEditorBlogs } = require
 
 const BlogRouter = express.Router();
 
-BlogRouter.get("/", getBlogs);
+BlogRouter.get("/get", getBlogs);
 BlogRouter.post("/add", createBlog);
 BlogRouter.put("/updBlog/:id", updateBlog);
 BlogRouter.delete("/dltBlog/:id", deleteBlog);
